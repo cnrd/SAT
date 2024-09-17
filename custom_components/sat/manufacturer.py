@@ -27,9 +27,21 @@ class ManufacturerFactory:
             from custom_components.sat.manufacturers.dedietrich import DeDietrich
             return DeDietrich()
 
+        if member_id == 24:
+            from custom_components.sat.manufacturers.vaillant import Vaillant
+            return Vaillant()
+
         if member_id == 27:
             from custom_components.sat.manufacturers.immergas import Immergas
             return Immergas()
+
+        if member_id == 33:
+            from custom_components.sat.manufacturers.viessmann import Viessmann
+            return Viessmann()
+
+        if member_id == 41:
+            from custom_components.sat.manufacturers.radiant import Radiant
+            return Radiant()
 
         if member_id == 131:
             from custom_components.sat.manufacturers.nefit import Nefit
