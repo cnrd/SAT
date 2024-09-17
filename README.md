@@ -43,12 +43,6 @@ PID ON/OFF thermostat:
 - Open Window detection
 
 ## Installation
-### Manual
-1. Download the latest release of the SAT custom component from the GitHub repository.
-2. Copy the sat directory to the custom_components directory in your Home Assistant configuration directory. If the custom_components directory doesn't exist, create it.
-3. Restart Home Assistant to load the SAT custom component.
-4. After installing the SAT custom component, you can configure it via the Home Assistant Config Flow interface.
-
 ### HACS
 
 Smart Autotune Thermostat ( SAT ) is available in [HACS][hacs] (Home Assistant Community Store).
@@ -63,6 +57,12 @@ _or_
 2. Open HACS in Home Assistant
 3. Search for "Smart Autotune Thermostat"
 4. Click the download button. ⬇️
+
+### Manual
+1. Download the latest release of the SAT custom component from the GitHub repository.
+2. Copy the sat directory to the custom_components directory in your Home Assistant configuration directory. If the custom_components directory doesn't exist, create it.
+3. Restart Home Assistant to load the SAT custom component.
+4. After installing the SAT custom component, you can configure it via the Home Assistant Config Flow interface.
 
 # Configuration
 SAT is configured using a config flow. After installation, go to the Integrations page in Home Assistant, click on the Add Integration button, and search for SAT if the autodiscovery feature fails.
