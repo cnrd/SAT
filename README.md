@@ -137,6 +137,19 @@ This factor adjusts the heating setpoint based on the boiler's return temperatur
 ## Presets tab:
 Predefined temperature settings for different scenarios or activities.
 
+## Advanced Tab
+*Thermal Comfort*: Uses as temperature sensor the Summer SImmer Index. The Summer Simmer Index refers to the perceived temperature based on the measured air temperature and relative humidity.
+
+ *Dynamic Minimum Setpoint (Experimental)*: The Boiler flow water temperature may exceed the Overshoot Protection Value during Low-Load Control in multiroom installations ( Some valves may be closed ). We developed a mechanishm that monitors the boiler return water temperature and changes accordingly the Control Setpoint that is sent to the boiler. See *Adjustment Factor for Return Temperature*.
+
+*Minimum Consumption*: The user can find this value at the boiler's manual. SAT uses this value in order to calculate the instant gas consumption.
+
+*Maximum Consumption*: The user can find this value at the boiler's manual. SAT uses this value in order to calculate the instant gas consumption.
+
+*Target Temperature Step*: SAT climate entity room setpoint step.
+
+*Maximum Relative Modulation*: The user is able to control the maximum relative modulation that the boiler will operate.
+
 # Terminology
 *Heating Curve Coefficient*: By adjusting the heating curve coefficient, you can balance the heating loss of your home with the energy generated from your boiler at a given setpoint based on the outside temperature. When this value is properly tuned, the room temperature should hover around the setpoint.
 
