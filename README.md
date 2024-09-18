@@ -86,7 +86,8 @@ SAT is configured using a config flow. After installation, go to the Integration
 
 3. Heating System: Selecting the correct heating system type is important for SAT to accurately control the temperature and optimize performance. Choose the option that matches your setup to ensure proper temperature regulation throughout your home.
 
-4. Multi-room setup: ( To be completed )
+4. Multi-room setup: 
+Note: If SAT is the only climate entity, skip this step.
 
 5. Calibrate System: Optimize your heating system by automatically determining the optimal PID values for your setup. When selecting Automatic Gains, please note that the system will go through a calibration process that may take approximately 20 minutes to complete.
 
