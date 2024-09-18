@@ -112,8 +112,8 @@ To be completed
 - Improved Controller
 
 *Heating Mode*: Available only for multiroom installations
-- Comfort ( The Highest error of all the climate entities is used as the PID error )
-- Eco ( The Main thermostat's error used only as the PID error )
+- Comfort ( SAT monitors the climates in other rooms to determine the error. It selects the highest error value as the PID error value for the current room )
+- Eco ( SAT monitors **only** the Main thermostat's error and it is used as the PID error )
 
 *Maximum Setpoint*:
 You can choose the max water setpoint for your system.
