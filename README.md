@@ -85,7 +85,9 @@ SAT is configured using a config flow. After installation, go to the Integration
 
 3. Heating System: Selecting the correct heating system type is important for SAT to accurately control the temperature and optimize performance. Choose the option that matches your setup to ensure proper temperature regulation throughout your home.
 
-4. Calibrate System: Optimize your heating system by automatically determining the optimal PID values for your setup. When selecting Automatic Gains, please note that the system will go through a calibration process that may take approximately 20 minutes to complete.
+4. Multi-room setup: ( To be completed )
+
+5. Calibrate System: Optimize your heating system by automatically determining the optimal PID values for your setup. When selecting Automatic Gains, please note that the system will go through a calibration process that may take approximately 20 minutes to complete.
 
 If you already know this value, then use the "Manually enter the overshoot protection value" option and fill the value.
 
@@ -100,6 +102,19 @@ To be completed
 # Configure
 
 ## General tab:
+*Heating Curve Version*: Represents the 3 formulas of calculation. The available options are:
+- Classic Curve
+- Quantum Curve
+- Precision Curve (Recommented )
+
+*PID Controller Version*: 
+- Classic Controller
+- Improved Controller
+
+*Heating Mode*: Available only for multiroom installations
+- Comfort ( The Highest error of all the climate entities is used as the PID error )
+- Eco ( The Main thermostat's error used only as the PID error )
+
 *Maximum Setpoint*:
 You can choose the max water setpoint for your system.
 For radiator installations, it is recommended to choose a value between 55-75 °C.
@@ -110,11 +125,12 @@ Note for Radiators: Higher Max water setpoint values will cause a more aggressiv
 *Heating Curve Coefficient*:
 The heating curve coefficient is a configurable parameter in SAT that allows you to adjust the relationship between the outdoor temperature and the heating system output. This is useful for optimizing the heating system's performance in different weather conditions, as it allows you to adjust how much heat the system delivers as the outdoor temperature changes. By tweaking this parameter, you can achieve a more efficient and comfortable heating system.
 
-## Areas tab:
-*Multi-room setup*:
-In multi-room mode, SAT monitors the climates in other rooms to determine the error and calculates how much heat is needed. It selects the highest error value as the error value for the current room, instead of using the average temperature across all rooms. This ensures that the temperature in each room is maintained at its desired level.
+*Automatic Gains Value*: Automatically tweaking the aggressiveness of the Kp, Ki and Kd gains. Best results when the user uses the same value as the Heating Curve Coefficient value.
 
-Note that SAT assumes that the climate control systems in the additional rooms are smart and won't exceed their target temperatures, as this can cause inefficiencies in the overall system. Once every climate control system in all rooms is around the target temperature, SAT can operate at its most efficient level.
+*Derivative Time Weight*: Further tweaking of the Kd value. Better start with the value `2`.
+
+*Adjustment Factor for Return Temperature*:
+This factor adjusts the heating setpoint based on the boiler's return temperature, affecting heating responsiveness and efficiency. A higher value increases sensitivity to temperature changes, enhancing control over comfort and energy use. Recommended starting range is 0.1 to 0.5. Adjust to suit your system and comfort preferences.
 
 *Contact Sensor*: You can add contact sensors to avoid wasting energy when a door/window is open. When the door/window is closed again, SAT restores heating.
 
@@ -131,16 +147,16 @@ Predefined temperature settings for different scenarios or activities.
 
 *Overshoot Protection*: This feature should be enabled when the minimum boiler capacity is greater than the control setpoint calculated by SAT. If the boiler overshoots the control setpoint, it may cycle, shortening the life of the burner. The solution is to adjust the boiler's on/off times to maintain the temperature at the setpoint while minimizing cycling.
 
-Overshoot Protection Value (OPV) Calculation:
+*Overshoot Protection Value (OPV) Calculation*:
 The OPV is a crucial value that determines the boiler's on/off times when the Overshoot Protection feature is present (During initial configuration).
-
-*Manual Calculation*: If you know the maximum flow water temperature of the boiler at 0% modulation, you can fill in this value during the initial configuration.
 
 *Automatic Calculation*: To calculate the OPV automatically, choose the "Calibrate and determine your overshoot protection value (approx. 20 min)" option during the initial configuration. SAT will then send the MM=0 and CS=75 commands, attempting to find the highest flow water temperature the boiler can produce while running at 0% modulation. This process takes at least 20 minutes. Once the OPV calculation is complete, SAT will resume normal operation and send a completion notification. The calculated value will be stored as an attribute in the SAT climate entity and used to determine the boiler's on/off times in the low-load control algorithm. If SAT detects that the boiler doesn't respect the 0% Max Modulation command, it will automatically change the calibration algorithm to a more sophisticated one to perform the calibration of the system.
 
+*Manual Calculation*: If you know the maximum flow water temperature of the boiler at 0% modulation, you can fill in this value during the initial configuration.
+
 Note: If you have any TRVs, open all of them (set them to a high setpoint) to ensure accurate calculation of the OPV. Once the calculation is complete, you can lower the setpoint back to your desired temperature.
 
-*Automatic Duty Cycle*: When this option is enabled, SAT calculates the ON and OFF times of the boiler in 15-minute intervals, given that the kW needed to heat the home is less than the minimum boiler capacity. Moreover, using this feature, SAT can efficiently regulate the room temperature even in mild weather by automatically adjusting the duty cycle.
+*Automatic Duty Cycle*: When this option is enabled, SAT calculates the ON and OFF times of the boiler in 15-minute intervals, given that the kW needed to heat the home is less than the minimum boiler capacity. Moreover, using this feature, SAT can efficiently regulate the room temperature even in mild weather by automatically extending the duty cycle up to 30 minutes.
 
 <!-- Badges -->
 
