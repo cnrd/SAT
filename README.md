@@ -80,8 +80,9 @@ SAT is configured using a config flow. After installation, go to the Integration
         - URL
 
 2. Configure sensors:
-    - Inside Sensor Entity ( Your Room Temperature sensor )
-    - Outside temperature sensor ( Your Outside Temperature sensor )
+    - Inside Temperature sensor ( Your Room Temperature sensor )
+    - Outside Temperature sensor ( Your Outside Temperature sensor )
+    - Inside Humidity Sensor ( Your Room Humidity sensor )
 
 3. Heating System: Selecting the correct heating system type is important for SAT to accurately control the temperature and optimize performance. Choose the option that matches your setup to ensure proper temperature regulation throughout your home.
 
@@ -105,7 +106,7 @@ To be completed
 *Heating Curve Version*: Represents the 3 formulas of calculation. The available options are:
 - Classic Curve
 - Quantum Curve
-- Precision Curve (Recommented )
+- Precision Curve ( Recommented )
 
 *PID Controller Version*: 
 - Classic Controller
