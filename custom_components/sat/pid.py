@@ -257,7 +257,7 @@ class PID:
             return 73 if self._heating_system == HEATING_SYSTEM_UNDERFLOOR else 99
 
         if self._version == 2:
-            return 73 if self._heating_system == HEATING_SYSTEM_UNDERFLOOR else 81.5
+            return 72
 
         raise Exception("Invalid version")
 
@@ -283,7 +283,7 @@ class PID:
     def kp(self) -> float | None:
         """Return the value of kp based on the current configuration."""
         if self._automatic_gains:
-            automatic_gain_value = 0.243 if self._heating_system == HEATING_SYSTEM_UNDERFLOOR else 0.33
+            automatic_gain_value = 0.25
             return round(self._automatic_gains_value * automatic_gain_value * self._last_heating_curve_value, 6)
 
         return float(self._kp)
@@ -299,7 +299,7 @@ class PID:
                 return round(self._last_heating_curve_value / 73900, 6)
 
             if self._version == 2:
-                return round(self._automatic_gains_value * (self._last_heating_curve_value / 36000), 6)
+                return round(self._automatic_gains_value * (self._last_heating_curve_value / 12000), 6)
 
             raise Exception("Invalid version")
 
