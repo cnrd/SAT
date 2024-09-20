@@ -86,8 +86,14 @@ SAT is configured using a config flow. After installation, go to the Integration
 
 3. Heating System: Selecting the correct heating system type is important for SAT to accurately control the temperature and optimize performance. Choose the option that matches your setup to ensure proper temperature regulation throughout your home.
 
-4. Multi-room setup: 
+4. Multi-room setup:
+  
 Note: If SAT is the only climate entity, skip this step.
+
+   - Primary: Users can add their physical thermostat. SAT will syncronize the `hvac_action` of the physical thermostat with the SAT climate entity's `hvac action`. Moreover the physical thermostat will act as a back up if any failure to HA occurs.
+   - Rooms: Users can add their TRV climate entities. So when any of the rooms will ask for heating, SAT will start the boiler.
+
+Look at the Heating Mode setting in General Tab for further customizability.
 
 5. Calibrate System: Optimize your heating system by automatically determining the optimal PID values for your setup. When selecting Automatic Gains, please note that the system will go through a calibration process that may take approximately 20 minutes to complete.
 
