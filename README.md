@@ -88,12 +88,14 @@ SAT is configured using a config flow. After installation, go to the Integration
 
 4. Multi-room setup:
   
-Note: If SAT is the only climate entity, skip this step.
+> [!Note]
+> If SAT is the only climate entity, skip this step.
 
    - Primary: Users can add their physical thermostat. SAT will syncronize the `hvac_action` of the physical thermostat with the SAT climate entity's `hvac action`. Moreover the physical thermostat will act as a back up if any failure to HA occurs.
    - Rooms: Users can add their TRV climate entities. So when any of the rooms will ask for heating, SAT will start the boiler.
 
-Look at the Heating Mode setting in General Tab for further customizability.
+> [!TIP]
+> Look at the Heating Mode setting in General Tab for further customization.
 
 5. Calibrate System: Optimize your heating system by automatically determining the optimal PID values for your setup. When selecting Automatic Gains, please note that the system will go through a calibration process that may take approximately 20 minutes to complete.
 
@@ -119,7 +121,11 @@ To be completed
 - Classic Controller
 - Improved Controller
 
-*Heating Mode*: Available only for multiroom installations
+*Heating Mode*: 
+
+> [!NOTE]
+>Available only for multiroom installations
+
 - Comfort ( SAT monitors the climates in other rooms to determine the error. It selects the highest error value as the PID error value for the current room )
 - Eco ( SAT monitors **only** the Main thermostat's error and it is used as the PID error )
 
@@ -128,17 +134,27 @@ You can choose the max water setpoint for your system.
 For radiator installations, it is recommended to choose a value between 55-75 °C.
 For underfloor installations, the recommended max water setpoint is 50 °C.
 
-Note for Radiators: Higher Max water setpoint values will cause a more aggressive warm-up.
+> [!NOTE]
+>  Radiators: Higher Max water setpoint values will cause a more aggressive warm-up.
 
 *Heating Curve Coefficient*:
 The heating curve coefficient is a configurable parameter in SAT that allows you to adjust the relationship between the outdoor temperature and the heating system output. This is useful for optimizing the heating system's performance in different weather conditions, as it allows you to adjust how much heat the system delivers as the outdoor temperature changes. By tweaking this parameter, you can achieve a more efficient and comfortable heating system.
 
-*Automatic Gains Value*: Automatically tweaking the aggressiveness of the Kp, Ki and Kd gains. Best results when the user uses the same value as the Heating Curve Coefficient value.
+*Automatic Gains Value*: Automatically tweaking the aggressiveness of the Kp, Ki and Kd gains. 
 
-*Derivative Time Weight*: Further tweaking of the Kd value. Better start with the value `2`.
+> [!TIP]
+> Best results when the user uses the same value as the Heating Curve Coefficient value.
+
+*Derivative Time Weight*: Further tweaking of the Kd value.
+
+> [!TIP]
+> Better start with the value `2`.
 
 *Adjustment Factor for Return Temperature*:
-This factor adjusts the heating setpoint based on the boiler's return temperature, affecting heating responsiveness and efficiency. A higher value increases sensitivity to temperature changes, enhancing control over comfort and energy use. Recommended starting range is 0.1 to 0.5. Adjust to suit your system and comfort preferences.
+This factor adjusts the heating setpoint based on the boiler's return temperature, affecting heating responsiveness and efficiency. A higher value increases sensitivity to temperature changes, enhancing control over comfort and energy use. 
+
+> [!TIP]
+> Recommended starting range is 0.1 to 0.5. Adjust to suit your system and comfort preferences.
 
 *Contact Sensor*: You can add contact sensors to avoid wasting energy when a door/window is open. When the door/window is closed again, SAT restores heating.
 
@@ -175,7 +191,8 @@ The OPV is a crucial value that determines the boiler's on/off times when the Ov
 
 *Manual Calculation*: If you know the maximum flow water temperature of the boiler at 0% modulation, you can fill in this value during the initial configuration.
 
-Note: If you have any TRVs, open all of them (set them to a high setpoint) to ensure accurate calculation of the OPV. Once the calculation is complete, you can lower the setpoint back to your desired temperature.
+> [!Note]
+> If you have any TRVs, open all of them (set them to a high setpoint) to ensure accurate calculation of the OPV. Once the calculation is complete, you can lower the setpoint back to your desired temperature.
 
 *Automatic Duty Cycle*: When this option is enabled, SAT calculates the ON and OFF times of the boiler in 15-minute intervals, given that the kW needed to heat the home is less than the minimum boiler capacity. Moreover, using this feature, SAT can efficiently regulate the room temperature even in mild weather by automatically extending the duty cycle up to 30 minutes.
 
