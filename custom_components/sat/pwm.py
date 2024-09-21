@@ -5,6 +5,7 @@ from typing import Optional, Tuple
 
 from .const import HEATER_STARTUP_TIMEFRAME
 from .heating_curve import HeatingCurve
+from .coordinator import SatDataUpdateCoordinator  # Import the coordinator to access flame_active
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -26,7 +27,7 @@ class PWMState(str, Enum):
 class PWM:
     """A class for implementing Pulse Width Modulation (PWM) control."""
 
-    def __init__(self, heating_curve: HeatingCurve, max_cycle_time: int, automatic_duty_cycle: bool, force: bool = False):
+    def __init__(self, heating_curve: HeatingCurve, max_cycle_time: int, automatic_duty_cycle: bool, coordinator: SatDataUpdateCoordinator, force: bool = False):
         """Initialize the PWM control."""
         self._alpha = 0.2
         self._force = force
@@ -36,6 +37,7 @@ class PWM:
         self._heating_curve = heating_curve
         self._max_cycle_time = max_cycle_time
         self._automatic_duty_cycle = automatic_duty_cycle
+        self._coordinator = coordinator  # Add coordinator for flame_active
 
         self.reset()
 
@@ -109,7 +111,8 @@ class PWM:
         if not self._automatic_duty_cycle:
             return int(self._last_duty_cycle_percentage * self._max_cycle_time), int((1 - self._last_duty_cycle_percentage) * self._max_cycle_time)
 
-        if self._last_duty_cycle_percentage < MIN_DUTY_CYCLE_PERCENTAGE:
+        # Updated condition with flame_active check
+        if self._last_duty_cycle_percentage < MIN_DUTY_CYCLE_PERCENTAGE and self._coordinator.flame_active:
             return 0, 1800
 
         if self._last_duty_cycle_percentage <= DUTY_CYCLE_20_PERCENT:
@@ -151,3 +154,4 @@ class PWM:
     @property
     def last_duty_cycle_percentage(self):
         return round(self._last_duty_cycle_percentage * 100, 2)
+
