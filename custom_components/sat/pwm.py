@@ -5,7 +5,7 @@ from typing import Optional, Tuple
 
 from .const import HEATER_STARTUP_TIMEFRAME
 from .heating_curve import HeatingCurve
-from .coordinator import SatDataUpdateCoordinator  # Import the coordinator to access flame_active
+from .coordinator import SatDataUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -37,7 +37,7 @@ class PWM:
         self._heating_curve = heating_curve
         self._max_cycle_time = max_cycle_time
         self._automatic_duty_cycle = automatic_duty_cycle
-        self._coordinator = coordinator  # Add coordinator for flame_active
+        self._coordinator = coordinator 
 
         self.reset()
 
@@ -113,7 +113,7 @@ class PWM:
 
         # Updated condition with flame_active check
         if self._last_duty_cycle_percentage < MIN_DUTY_CYCLE_PERCENTAGE and self._coordinator.flame_active:
-            return 0, 1800
+            return 180, 1620
 
         if self._last_duty_cycle_percentage <= DUTY_CYCLE_20_PERCENT:
             on_time = ON_TIME_20_PERCENT
@@ -135,6 +135,9 @@ class PWM:
 
         if self._last_duty_cycle_percentage > MAX_DUTY_CYCLE_PERCENTAGE:
             return 1800, 0
+
+        else:
+            return 0, 1800
 
     @property
     def state(self) -> PWMState:
