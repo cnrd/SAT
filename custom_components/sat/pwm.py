@@ -27,7 +27,7 @@ class PWMState(str, Enum):
 class PWM:
     """A class for implementing Pulse Width Modulation (PWM) control."""
 
-    def __init__(self,coordinator: SatDataUpdateCoordinator, heating_curve: HeatingCurve, max_cycle_time: int, automatic_duty_cycle: bool, force: bool = False):
+    def __init__(self, coordinator: SatDataUpdateCoordinator, heating_curve: HeatingCurve, max_cycle_time: int, automatic_duty_cycle: bool, force: bool = False):
         """Initialize the PWM control."""
         self._alpha = 0.2
         self._force = force
