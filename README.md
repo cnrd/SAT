@@ -136,7 +136,7 @@ Underfloor:
 > url: https://www.desmos.com/calculator/spfvsid4ds?embed width="500" height="500"
 > allow_open_top_navigation: true
 > allow: fullscreen
-> aspect_ratio: 130%```
+> aspect_ratio: 130%
 
 *PID Controller Version*: 
 - Classic Controller
