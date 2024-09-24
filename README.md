@@ -126,10 +126,12 @@ Underfloor:
 
 > [!NOTE]
 > a: Heating Curve Value
+> 
 > b: Room Setpoint
 
 > [!TIP]
 > You can add the graph as `iframe` card in HA.
+> 
 > Radiators example:
 > ```yaml
 > type: iframe
