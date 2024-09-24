@@ -115,13 +115,13 @@ To be completed
 *Heating Curve Version*: Represents the 3 formulas of calculation. The available options are:
 
 Radiators:
-- [Classic Curve](https://www.desmos.com/calculator/cm1xltyw4t)
-- [Quantum Curve](https://www.desmos.com/calculator/xk47rleggi)
+- [Classic Curve](https://www.desmos.com/calculator/cy8gjiciny)
+- [Quantum Curve](https://www.desmos.com/calculator/hmrlrapnxz)
 - [Precision Curve](https://www.desmos.com/calculator/spfvsid4ds) ( Recommented )
 
 Underfloor:
-- [Classic Curve](https://www.desmos.com/calculator/ueetmpycur)
-- [Quantum Curve](https://www.desmos.com/calculator/4kf0alwes6)
+- [Classic Curve](https://www.desmos.com/calculator/exjth5qsoe)
+- [Quantum Curve](https://www.desmos.com/calculator/ke69ywalcz)
 - [Precision Curve](https://www.desmos.com/calculator/i7f7uuyaoz) ( Recommented )
 
 > [!NOTE]
