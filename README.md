@@ -124,6 +124,20 @@ Underfloor:
 - Quantum Curve
 - [Precision Curve](https://www.desmos.com/calculator/t6kdgsmbys) ( Recommented )
 
+> [!NOTE]
+> a: Heating Curve Value
+> b: Room Setpoint
+
+> [!TIP]
+> You can add the graph as `iframe` card in HA.
+> Radiators example:
+> ```yaml
+> type: iframe
+> url: https://www.desmos.com/calculator/spfvsid4ds?embed width="500" height="500"
+> allow_open_top_navigation: true
+> allow: fullscreen
+> aspect_ratio: 130%```
+
 *PID Controller Version*: 
 - Classic Controller
 - Improved Controller
