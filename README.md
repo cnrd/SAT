@@ -113,9 +113,16 @@ To be completed
 
 ## General tab:
 *Heating Curve Version*: Represents the 3 formulas of calculation. The available options are:
+
+Radiators:
 - Classic Curve
 - Quantum Curve
-- Precision Curve ( Recommented )
+- [Precision Curve](https://www.desmos.com/calculator/spfvsid4ds) ( Recommented )
+
+Underfloor:
+- Classic Curve
+- Quantum Curve
+- [Precision Curve](https://www.desmos.com/calculator/vjfkb7fwlz) ( Recommented )
 
 *PID Controller Version*: 
 - Classic Controller
