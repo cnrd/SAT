@@ -122,7 +122,7 @@ Radiators:
 Underfloor:
 - Classic Curve
 - Quantum Curve
-- [Precision Curve](https://www.desmos.com/calculator/vjfkb7fwlz) ( Recommented )
+- [Precision Curve](https://www.desmos.com/calculator/t6kdgsmbys) ( Recommented )
 
 *PID Controller Version*: 
 - Classic Controller
