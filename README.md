@@ -115,27 +115,27 @@ To be completed
 *Heating Curve Version*: Represents the 3 formulas of calculation. The available options are:
 
 Radiators:
-- Classic Curve
-- Quantum Curve
+- [Classic Curve](https://www.desmos.com/calculator/cm1xltyw4t)
+- [Quantum Curve](https://www.desmos.com/calculator/xk47rleggi)
 - [Precision Curve](https://www.desmos.com/calculator/spfvsid4ds) ( Recommented )
 
 Underfloor:
-- Classic Curve
-- Quantum Curve
-- [Precision Curve](https://www.desmos.com/calculator/t6kdgsmbys) ( Recommented )
+- [Classic Curve](https://www.desmos.com/calculator/ueetmpycur)
+- [Quantum Curve](https://www.desmos.com/calculator/4kf0alwes6)
+- [Precision Curve](https://www.desmos.com/calculator/i7f7uuyaoz) ( Recommented )
 
 > [!NOTE]
-> a: Heating Curve Value
-> 
-> b: Room Setpoint
+> Graph parameters:
+> - a: Heating Curve Value
+> - b: Room Setpoint
 
 > [!TIP]
 > You can add the graph as `iframe` card in HA.
 > 
-> Radiators example:
+> Example:
 > ```yaml
 > type: iframe
-> url: https://www.desmos.com/calculator/spfvsid4ds?embed width="500" height="500"
+> url: https://www.desmos.com/calculator/spfvsid4ds
 > allow_open_top_navigation: true
 > allow: fullscreen
 > aspect_ratio: 130%
