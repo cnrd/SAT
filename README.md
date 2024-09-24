@@ -130,7 +130,7 @@ Underfloor:
 > - b: Room Setpoint
 
 > [!TIP]
-> You can add the graph as `iframe` card in HA.
+> You can add the graph as an `iframe` card in HA.
 > 
 > Example:
 > ```yaml
