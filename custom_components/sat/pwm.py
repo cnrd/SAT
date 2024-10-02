@@ -8,8 +8,9 @@ from .heating_curve import HeatingCurve
 
 _LOGGER = logging.getLogger(__name__)
 
+CYCLES_PER_HOUR = 4  # 4 will be a selector for duty cycles per hour. The heat pump will have options a) 2 b) 1.25 c) 1 and gas boilers will have the options a) 4 b) 3 #
 ON_TIME_LOWER_THRESHOLD = 180
-ON_TIME_HIGHER_THRESHOLD = 3600 / 4 # 4 will be a selector for duty cycles per hour. The heat pump will have options a) 2 b) 1.25 c) 1 and gas boilers will have the options a) 4 b) 3 #
+ON_TIME_HIGHER_THRESHOLD = 3600 / CYCLES_PER_HOUR
 ON_TIME_MAX_THRESHOLD = ON_TIME_HIGHER_THRESHOLD * 2
 
 DUTY_CYCLE_LOWER_THRESHOLD = ON_TIME_LOWER_THRESHOLD / ON_TIME_HIGHER_THRESHOLD
