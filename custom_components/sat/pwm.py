@@ -8,13 +8,17 @@ from .heating_curve import HeatingCurve
 
 _LOGGER = logging.getLogger(__name__)
 
-DUTY_CYCLE_20_PERCENT = 0.2
-DUTY_CYCLE_80_PERCENT = 0.8
-MIN_DUTY_CYCLE_PERCENTAGE = 0.1
-MAX_DUTY_CYCLE_PERCENTAGE = 0.9
+ON_TIME_LOWER_THRESHOLD = 180
+ON_TIME_HIGHER_THRESHOLD = 3600 / 4 # 4 will be a selector for duty cycles per hour. The heat pump will have options a) 2 b) 1.25 c) 1 and gas boilers will have the options a) 4 b) 3 #
+ON_TIME_MAX_THRESHOLD = ON_TIME_HIGHER_THRESHOLD * 2
 
-ON_TIME_20_PERCENT = 180
-ON_TIME_80_PERCENT = 900
+DUTY_CYCLE_LOWER_THRESHOLD = ON_TIME_LOWER_THRESHOLD / ON_TIME_HIGHER_THRESHOLD
+DUTY_CYCLE_MAX_THRESHOLD = 1 - DUTY_CYCLE_LOWER_THRESHOLD
+MIN_DUTY_CYCLE_PERCENTAGE = DUTY_CYCLE_LOWER_THRESHOLD / 2
+MAX_DUTY_CYCLE_PERCENTAGE = 1 - MIN_DUTY_CYCLE_PERCENTAGE
+
+
+
 
 
 class PWMState(str, Enum):
@@ -110,28 +114,28 @@ class PWM:
             return int(self._last_duty_cycle_percentage * self._max_cycle_time), int((1 - self._last_duty_cycle_percentage) * self._max_cycle_time)
 
         if self._last_duty_cycle_percentage < MIN_DUTY_CYCLE_PERCENTAGE:
-            return 0, 1800
+            return 0, ON_TIME_MAX_THRESHOLD
 
-        if self._last_duty_cycle_percentage <= DUTY_CYCLE_20_PERCENT:
-            on_time = ON_TIME_20_PERCENT
-            off_time = (ON_TIME_20_PERCENT / self._last_duty_cycle_percentage) - ON_TIME_20_PERCENT
+        if self._last_duty_cycle_percentage <= DUTY_CYCLE_LOWER_THRESHOLD:
+            on_time = ON_TIME_LOWER_THRESHOLD
+            off_time = (ON_TIME_LOWER_THRESHOLD / self._last_duty_cycle_percentage) - ON_TIME_LOWER_THRESHOLD
 
             return int(on_time), int(off_time)
 
-        if self._last_duty_cycle_percentage <= DUTY_CYCLE_80_PERCENT:
-            on_time = ON_TIME_80_PERCENT * self._last_duty_cycle_percentage
-            off_time = ON_TIME_80_PERCENT * (1 - self._last_duty_cycle_percentage)
+        if self._last_duty_cycle_percentage <= DUTY_CYCLE_MAX_THRESHOLD:
+            on_time = ON_TIME_HIGHER_THRESHOLD * self._last_duty_cycle_percentage
+            off_time = ON_TIME_HIGHER_THRESHOLD * (1 - self._last_duty_cycle_percentage)
 
             return int(on_time), int(off_time)
 
         if self._last_duty_cycle_percentage <= MAX_DUTY_CYCLE_PERCENTAGE:
-            on_time = ON_TIME_20_PERCENT / (1 - self._last_duty_cycle_percentage) - ON_TIME_20_PERCENT
-            off_time = ON_TIME_20_PERCENT
+            on_time = ON_TIME_LOWER_THRESHOLD / (1 - self._last_duty_cycle_percentage) - ON_TIME_LOWER_THRESHOLD
+            off_time = ON_TIME_LOWER_THRESHOLD
 
             return int(on_time), int(off_time)
 
         if self._last_duty_cycle_percentage > MAX_DUTY_CYCLE_PERCENTAGE:
-            return 1800, 0
+            return ON_TIME_MAX_THRESHOLD, 0
 
     @property
     def state(self) -> PWMState:
