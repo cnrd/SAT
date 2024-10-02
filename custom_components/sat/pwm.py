@@ -114,7 +114,10 @@ class PWM:
             return int(self._last_duty_cycle_percentage * self._max_cycle_time), int((1 - self._last_duty_cycle_percentage) * self._max_cycle_time)
 
         if self._last_duty_cycle_percentage < MIN_DUTY_CYCLE_PERCENTAGE:
-            return 0, ON_TIME_MAX_THRESHOLD
+            on_time = 0
+            off_time = ON_TIME_MAX_THRESHOLD
+            
+            return int(on_time), int (off_time)
 
         if self._last_duty_cycle_percentage <= DUTY_CYCLE_LOWER_THRESHOLD:
             on_time = ON_TIME_LOWER_THRESHOLD
@@ -135,7 +138,10 @@ class PWM:
             return int(on_time), int(off_time)
 
         if self._last_duty_cycle_percentage > MAX_DUTY_CYCLE_PERCENTAGE:
-            return ON_TIME_MAX_THRESHOLD, 0
+            on_time = ON_TIME_MAX_THRESHOLD
+            off_time = 0
+            
+            return int(on_time), int (off_time)
 
     @property
     def state(self) -> PWMState:
