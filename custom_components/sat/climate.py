@@ -793,7 +793,7 @@ class SatClimate(SatEntity, ClimateEntity, RestoreEntity):
 
         self.async_write_ha_state()
 
-     async def _async_control_setpoint(self, pwm_state: PWMState) -> None:
+    async def _async_control_setpoint(self, pwm_state: PWMState) -> None:
         """Control the setpoint of the heating system."""
         if self.hvac_mode == HVACMode.HEAT:
             if not self.pulse_width_modulation_enabled or pwm_state == pwm_state.IDLE:
