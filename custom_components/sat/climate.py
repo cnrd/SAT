@@ -800,11 +800,11 @@ class SatClimate(SatEntity, ClimateEntity, RestoreEntity):
                 _LOGGER.info("Running Normal cycle")
                 self._setpoint = self._calculated_setpoint
             elif pwm_state == pwm_state.ON and not self._coordinator.flame_active:
-                _LOGGER.info(f"Running PWM cycle: {pwm_state}")
-                self._setpoint = self.minimum_setpoint
+                  _LOGGER.info(f"Running PWM cycle: {pwm_state}")
+                  self._setpoint = self.minimum_setpoint
             elif pwm_state == pwm_state.ON:
-                _LOGGER.info(f"Running PWM cycle: {pwm_state}")
-                self._setpoint = self._coordinator.boiler_temperature - 1
+                  _LOGGER.info(f"Running PWM cycle: {pwm_state}")
+                  self._setpoint = self._coordinator.boiler_temperature - 1
             else:
                 MINIMUM_SETPOINT
         else:
