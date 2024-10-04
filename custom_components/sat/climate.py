@@ -556,7 +556,7 @@ class SatClimate(SatEntity, ClimateEntity, RestoreEntity):
 
     @property
     def relative_modulation_value(self) -> int:
-        return self._maximum_relative_modulation if self._relative_modulation.enabled else MINIMUM_RELATIVE_MOD
+        return self._maximum_relative_modulation if self._relative_modulation.enabled else 100
 
     @property
     def relative_modulation_state(self) -> RelativeModulationState:
@@ -799,9 +799,15 @@ class SatClimate(SatEntity, ClimateEntity, RestoreEntity):
             if not self.pulse_width_modulation_enabled or pwm_state == pwm_state.IDLE:
                 _LOGGER.info("Running Normal cycle")
                 self._setpoint = self._calculated_setpoint
-            else:
-                _LOGGER.info(f"Running PWM cycle: {pwm_state}")
-                self._setpoint = self.minimum_setpoint if pwm_state == pwm_state.ON else MINIMUM_SETPOINT
+            elif pwm_state == pwm_state.ON and not self._coordinator.flame_active:
+                _LOGGER.info(f"Running workaround mode PWM cycle: {pwm_state} without flame")
+                self._setpoint = self.minimum_setpoint
+                await asyncio.sleep(25)
+            elif pwm_state == pwm_state.ON :
+                _LOGGER.info(f"Running workaround mode PWM cycle: {pwm_state} with flame")
+                self._setpoint = self._coordinator.boiler_temperature - 1
+            else: 
+                self._setpoint = MINIMUM_SETPOINT
         else:
             self._calculated_setpoint = None
             self._setpoint = MINIMUM_SETPOINT
