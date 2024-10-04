@@ -805,7 +805,7 @@ class SatClimate(SatEntity, ClimateEntity, RestoreEntity):
                 await asyncio.sleep(60)
             elif pwm_state == pwm_state.ON :
                 _LOGGER.info(f"Running workaround mode PWM cycle: {pwm_state} with flame")
-                self._setpoint = self._coordinator.boiler_temperature - 2
+                self._setpoint = self._coordinator.boiler_temperature * 0.95
             else: 
                 self._setpoint = MINIMUM_SETPOINT
         else:
