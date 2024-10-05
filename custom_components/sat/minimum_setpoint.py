@@ -22,16 +22,16 @@ class MinimumSetpoint:
         self._store = Store(hass, self._STORAGE_VERSION, self._STORAGE_KEY)
 
         data = await self._store.async_load()
-        if data and "base_return_temperature" in data:
-            self.base_dt_temperature = data["base_return_temperature"]
-            _LOGGER.debug("Loaded base return temperature from storage.")
+        if data and "base_dt_temperature" in data:
+            self.base_dt_temperature = data["base_dt_temperature"]
+            _LOGGER.debug("Loaded base dt temperature from storage.")
 
-    def warming_up(self, flame_active: bool,) -> None:
+    def warming_up(self,return_temperature: float, boiler_temperature: float, flame_active: bool,) -> None:
         if self.base_dt_temperature is not None and flame_active:
             return
 
         # Use the new value if it's higher or none is set
-        self.base_dt_temperature = 9
+        self.base_dt_temperature = boiler_temperature - return_temperature
         _LOGGER.debug(f"Higher temperature set to initial value.")
 
         # Make sure to remember this value
@@ -51,4 +51,4 @@ class MinimumSetpoint:
         return self.current_minimum_setpoint if self.current_minimum_setpoint is not None else self.configured_minimum_setpoint
 
     def _data_to_save(self) -> dict:
-        return {"base_return_temperature": self.base_dt_temperature}
+        return {"base_dt_temperature": self.base_dt_temperature}
