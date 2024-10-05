@@ -888,10 +888,10 @@ class SatClimate(SatEntity, ClimateEntity, RestoreEntity):
         if not self._coordinator.hot_water_active and self._coordinator.flame_active:
             # Calculate the base return temperature
             if self.warming_up:
-                self._minimum_setpoint.warming_up(self._coordinator.boiler_temperature - self._coordinator.return_temperature)
+                self._minimum_setpoint.warming_up(self._coordinator.boiler_temperature, self._coordinator.return_temperature)
 
             # Calculate the dynamic minimum setpoint
-            self._minimum_setpoint.calculate(self._coordinator.boiler_temperature - self._coordinator.return_temperature)
+            self._minimum_setpoint.calculate(self._coordinator.boiler_temperature, self._coordinator.return_temperature)
 
         # If the setpoint is high and the HVAC is not off, turn on the heater
         if self._setpoint > MINIMUM_SETPOINT and self.hvac_mode != HVACMode.OFF:
