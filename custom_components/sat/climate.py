@@ -805,9 +805,6 @@ class SatClimate(SatEntity, ClimateEntity, RestoreEntity):
         else:
             self._calculated_setpoint = None
             self._setpoint = MINIMUM_SETPOINT
-        else:
-            self._calculated_setpoint = None
-            self._setpoint = MINIMUM_SETPOINT
 
         await self._coordinator.async_set_control_setpoint(self._setpoint)
 
