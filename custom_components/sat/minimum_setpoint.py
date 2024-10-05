@@ -27,7 +27,7 @@ class MinimumSetpoint:
             _LOGGER.debug("Loaded base return temperature from storage.")
 
     def warming_up(self, return_temperature: float) -> None:
-        if self.base_return_temperature is not None and self.base_return_temperature > return_temperature:
+        if self.base_return_temperature is not None:
             return
 
         # Use the new value if it's higher or none is set
@@ -43,8 +43,7 @@ class MinimumSetpoint:
         if self.base_return_temperature is None:
             return
 
-        adjustment = (return_temperature - self.base_return_temperature) * self.adjustment_factor
-        self.current_minimum_setpoint = self.configured_minimum_setpoint + adjustment
+        self.current_minimum_setpoint = return_temperature + self.base_return_temperature - 2
 
         _LOGGER.debug(f"Calculated new minimum setpoint: {self.current_minimum_setpoint}")
 
