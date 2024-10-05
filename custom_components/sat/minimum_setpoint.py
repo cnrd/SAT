@@ -32,7 +32,7 @@ class MinimumSetpoint:
 
         # Use the new value if it's higher or none is set
         self.base_return_temperature = boiler_temperature - return_temperature
-        _LOGGER.debug(f"Higher temperature set to: {return_temperature}.")
+        _LOGGER.debug(f"Higher temperature set to: {self.base_return_temperature}.")
 
         # Make sure to remember this value
         if self._store:
