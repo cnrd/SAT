@@ -26,7 +26,7 @@ class MinimumSetpoint:
             self.base_return_temperature = data["base_return_temperature"]
             _LOGGER.debug("Loaded base return temperature from storage.")
 
-    def warming_up(self, return_temperature: float) -> None:
+    def warming_up(self, return_temperature: float, boiler_temperature: float) -> None:
         if self.base_return_temperature is not None:
             return
 
