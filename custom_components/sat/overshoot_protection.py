@@ -26,6 +26,9 @@ class OvershootProtection:
 
             # Enforce timeouts to ensure operations do not run indefinitely
             await asyncio.wait_for(self._wait_for_flame(), timeout=OVERSHOOT_PROTECTION_INITIAL_WAIT)
+            await asyncio.sleep(STABLE_TEMPERATURE_WAIT)
+
+            _LOGGER.info("Waiting an additional %s seconds for boiler flow water temperature rise", STABLE_TEMPERATURE_WAIT)
             await asyncio.wait_for(self._wait_for_stable_temperature(), timeout=OVERSHOOT_PROTECTION_TIMEOUT)
 
             _LOGGER.info("Waiting an additional %s seconds for stability", STABLE_TEMPERATURE_WAIT)
