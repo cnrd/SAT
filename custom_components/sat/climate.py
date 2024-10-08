@@ -380,7 +380,7 @@ class SatClimate(SatEntity, ClimateEntity, RestoreEntity):
             "minimum_setpoint": self.minimum_setpoint,
             "requested_setpoint": self.requested_setpoint,
             "adjusted_minimum_setpoint": self.adjusted_minimum_setpoint,
-            "base_dt_temperature": self._minimum_setpoint.base_dt_temperature,
+            "base_return_temperature": self._minimum_setpoint.base_return_temperature,
             "outside_temperature": self.current_outside_temperature,
             "optimal_coefficient": self.heating_curve.optimal_coefficient,
             "coefficient_derivative": self.heating_curve.coefficient_derivative,
@@ -888,7 +888,7 @@ class SatClimate(SatEntity, ClimateEntity, RestoreEntity):
         if not self._coordinator.hot_water_active and self._coordinator.flame_active:
             # Calculate the base return temperature
             if self.warming_up:
-                self._minimum_setpoint.warming_up(self._coordinator.boiler_temperature, self._coordinator.return_temperature)
+                self._minimum_setpoint.warming_up(self._coordinator.return_temperature)
 
             # Calculate the dynamic minimum setpoint
             self._minimum_setpoint.calculate(self._coordinator.return_temperature)
