@@ -793,13 +793,13 @@ class SatClimate(SatEntity, ClimateEntity, RestoreEntity):
 
         self.async_write_ha_state()
 
-    async def _async_control_setpoint(self, pwm_state: PWMState) -> None:
+    async def _async_control_setpoint(self, pwm_state: PWMState, self._coordinator.boiler_temperature: float, self._coordinator.relative_modulation_value: float) -> None:
         """Control the setpoint of the heating system."""
         if self.hvac_mode == HVACMode.HEAT:
             if not self.pulse_width_modulation_enabled or pwm_state == pwm_state.IDLE:
                 _LOGGER.info("Running Normal cycle")
                 self._setpoint = self._calculated_setpoint
-            elif self.pulse_width_modulation_enabled and self._coordinator.boiler_temperature - self.minimum_setpoint > 2 and self._coordinator.relative_modulation_value < 2:
+            elif self.pulse_width_modulation_enabled and boiler_temperature - self.minimum_setpoint > 2 and relative_modulation_value < 2:
                 _LOGGER.info("Running PWM cycle: {pwm_state}, following the boiler temperature")
                 self._setpoint = self._coordinator.boiler_temperature - 2 if pwm_state == pwm_state.ON else MINIMUM_SETPOINT
             else:
