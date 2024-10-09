@@ -801,7 +801,7 @@ class SatClimate(SatEntity, ClimateEntity, RestoreEntity):
                 self._setpoint = self._calculated_setpoint
             else:
                 _LOGGER.info(f"Running PWM cycle: {pwm_state}")
-                self._setpoint = self._coordinator.boiler_temperatute - 2.5 if pwm_state == pwm_state.ON else MINIMUM_SETPOINT
+                self._setpoint = self.minimum_setpoint if pwm_state == pwm_state.ON else MINIMUM_SETPOINT
         else:
             self._calculated_setpoint = None
             self._setpoint = MINIMUM_SETPOINT
