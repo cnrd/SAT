@@ -556,7 +556,7 @@ class SatClimate(SatEntity, ClimateEntity, RestoreEntity):
 
     @property
     def relative_modulation_value(self) -> int:
-        return self._maximum_relative_modulation if self._relative_modulation.enabled else MINIMUM_RELATIVE_MOD
+        return self._maximum_relative_modulation
 
     @property
     def relative_modulation_state(self) -> RelativeModulationState:
