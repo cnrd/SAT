@@ -13,10 +13,15 @@
 
 ## What is the Smart Autotune Thermostat?
 
-The Smart Autotune Thermostat, or SAT for short, is a custom component for Home Assistant that works with an [OpenTherm Gateway (OTGW)](https://otgw.tclcode.com/) (MQTT or Serial). It can also function as a PID ON/OFF thermostat, providing advanced temperature control based on Outside Temperature compensation and the Proportional-Integral-Derivative (PID) algorithm. Unlike other thermostat components, SAT supports automatic gain tuning and heating curve coefficients. This capability allows it to determine the optimal setpoint for your boiler without any manual intervention.
+The Smart Autotune Thermostat, or SAT for short, is a custom component for Home Assistant that works with:
+- [OpenTherm Gateway (OTGW)](https://otgw.tclcode.com/) (MQTT or Serial)
+- [DIYLess](https://diyless.com/) Master OpenTherm Shield
+- [Ihor Melnyk](http://ihormelnyk.com/opentherm_adapter)' OpenTherm adapter
+
+It can also function as a PID ON/OFF thermostat, providing advanced temperature control based on Outside Temperature compensation and the Proportional-Integral-Derivative (PID) algorithm. Unlike other thermostat components, SAT supports automatic gain tuning and heating curve coefficients. This capability allows it to determine the optimal setpoint for your boiler without any manual intervention.
 
 ## Features
-OpenTherm ( MQTT / Serial ):
+OpenTherm ( MQTT / Serial / ESPHome ):
 - Multi-room temperature control with support for temperature synchronization for main climates
 - Overshoot protection value automatic calculation mechanism
 - Adjustable heating curve coefficients to fine-tune your heating system
@@ -70,7 +75,7 @@ SAT is configured using a config flow. After installation, go to the Integration
 ## OpenTherm
 
 1. OpenTherm Connection
-   - MQTT
+   - MQTT:
         - Name of the thermostat
         - Top Topic ( *MQTT Top Topic* found in OTGW-firmware Settings )
         - Device
@@ -78,6 +83,101 @@ SAT is configured using a config flow. After installation, go to the Integration
    - Serial:
         - Name of the thermostat
         - URL
+
+   - ESPHome:
+        - Name of the thermostat
+        - Device
+
+> [!Important]
+> The ESPHome yaml need to follow the exact naming of the following configuration.
+<details>
+<summary>ESPHome minimal yaml configuration</summary>
+   
+```yaml
+external_components:
+  source: github://olegtarasov/esphome-opentherm@main
+  refresh: 0s
+
+opentherm:
+  in_pin: 33
+  out_pin: 35
+  ch_enable: true
+  dhw_enable: true
+
+number:
+  - platform: opentherm
+    t_dhw_set:
+      name: "dhw_setpoint_temperature"
+      min_value: 30.0
+      max_value: 70.0
+      step: 1
+      initial_value: 55.0
+      restore_value: true
+    t_set:
+      name: "ch_setpoint_temperature"
+      min_value: 0.0
+      max_value: 80.0
+      step: 0.1
+      initial_value: 0.0
+      restore_value: true
+    max_t_set:
+      name: "max_ch_setpoint_temperature"
+      min_value: 20.0
+      max_value: 80.0
+      initial_value: 80.0
+      step: 1
+      restore_value: true
+    max_rel_mod_level:
+      name: "max_modulation_level"
+      entity_category: config
+      min_value: 0
+      max_value: 100
+      step: 1
+      initial_value: 100
+      restore_value: true
+
+sensor:
+  - platform: opentherm
+    rel_mod_level:
+      name: "modulation"
+    device_id:
+      name: "boiler_member_id"
+    t_boiler:
+      name: "boiler_temperature"
+    t_ret:
+      name: "return_temperature"
+    t_dhw_set_lb:
+      name: "dhw_min_temperature"
+    t_dhw_set_ub:
+      name: "dhw_max_temperature"
+    t_dhw:
+      name: "Hot Water Temperature"
+    max_capacity:
+      name: "max_capacity"
+    min_mod_level:
+      name: "min_mod_level"
+
+binary_sensor:
+  - platform: opentherm
+    flame_on:
+      name: "flame_active"
+    ch_active:
+      name: "Central Heating active"
+    dhw_active:
+      name: "Hot Water active"
+
+switch:
+  - platform: opentherm
+    dhw_enable:
+      name: "dhw_enabled"
+      restore_mode: RESTORE_DEFAULT_ON
+      entity_category: config
+    ch_enable:
+      name: "ch_enabled"
+      restore_mode: RESTORE_DEFAULT_ON
+      entity_category: config
+```
+</details>
 
 2. Configure sensors:
     - Inside Temperature sensor ( Your Room Temperature sensor )
