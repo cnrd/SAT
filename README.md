@@ -89,7 +89,7 @@ SAT is configured using a config flow. After installation, go to the Integration
         - Device
 
 > [!Important]
-> The ESPHome yaml need to follow the exact naming of the following configuration.
+> The ESPHome yaml needs to follow the exact naming of the following configuration.
 <details>
 <summary>ESPHome minimal yaml configuration</summary>
    
