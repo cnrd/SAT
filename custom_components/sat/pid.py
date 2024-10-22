@@ -283,7 +283,7 @@ class PID:
     def kp(self) -> float | None:
         """Return the value of kp based on the current configuration."""
         if self._automatic_gains:
-            automatic_gain_value = 0.25
+            automatic_gain_value = 0.333
             return round(self._automatic_gains_value * automatic_gain_value * self._last_heating_curve_value, 6)
 
         return float(self._kp)
