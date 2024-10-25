@@ -75,16 +75,16 @@ SAT is configured using a config flow. After installation, go to the Integration
 ## OpenTherm
 
 1. OpenTherm Connection
-   - MQTT:
+   - OpenTherm Gateway MQTT:
         - Name of the thermostat
         - Top Topic ( *MQTT Top Topic* found in OTGW-firmware Settings )
         - Device
 
-   - Serial:
+   - OpenTherm Gateway Serial:
         - Name of the thermostat
         - URL
 
-   - ESPHome:
+   - ESPHome Opentherm:
         - Name of the thermostat
         - Device
 
