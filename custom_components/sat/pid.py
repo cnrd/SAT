@@ -257,7 +257,7 @@ class PID:
             return 73 if self._heating_system == HEATING_SYSTEM_UNDERFLOOR else 99
 
         if self._version == 2:
-            return 111
+            return 76.7
 
         raise Exception("Invalid version")
 
