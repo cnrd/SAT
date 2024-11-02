@@ -5,6 +5,11 @@
 ![build][build-badge]
 [![discord][discord-badge]][discord-url]
 
+**Please :star: this repo if you find it useful.**
+
+**If you want to show your support please**
+
+
 <a href="https://www.buymeacoffee.com/alexwijn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=alexwijn&button_colour=0ac982&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
 
 ![opentherm-mqtt.png](https://raw.githubusercontent.com/Alexwijn/SAT/develop/.github/images/opentherm-mqtt.png)
