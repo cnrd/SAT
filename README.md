@@ -7,7 +7,7 @@
 
 **Please :star: this repo if you find it useful.**
 
-**If you want to show your support please**
+**Your support for the countless hours we've dedicated to this development is greatly appreciated, though not required**
 
 
 <a href="https://www.buymeacoffee.com/alexwijn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=alexwijn&button_colour=0ac982&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
