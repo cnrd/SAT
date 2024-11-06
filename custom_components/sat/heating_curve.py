@@ -79,7 +79,7 @@ class HeatingCurve:
             return 2.72 * (target_temperature - 20) + 0.03 * (outside_temperature - 20) ** 2 - 1.2 * (outside_temperature - 20)
 
         if self._version == 3:
-            return 4 * (target_temperature - 20) + 0.03 * (outside_temperature - 20) ** 2 - 0.4 * (outside_temperature - 20)
+            return 0.03 * (outside_temperature - target_temperature ) ** 2 - 0.4 * (outside_temperature - target_temperature )
 
         raise Exception("Invalid version")
 
