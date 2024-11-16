@@ -299,7 +299,7 @@ class PID:
                 return round(self._last_heating_curve_value / 73900, 6)
 
             if self._version == 2:
-                return round(self._automatic_gains_value * (self._last_heating_curve_value / 18000), 6)
+                return round(self._automatic_gains_value * self._last_heating_curve_value / ( 81 * self._get_aggression_value() * self._derivative_time_weight ), 6)
 
             raise Exception("Invalid version")
 
