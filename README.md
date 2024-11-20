@@ -100,13 +100,9 @@ SAT is configured using a config flow. After installation, go to the Integration
 <summary>ESPHome minimal yaml configuration</summary>
    
 ```yaml
-external_components:
-  source: github://olegtarasov/esphome-opentherm@main
-  refresh: 0s
-
 opentherm:
-  in_pin: 33
-  out_pin: 35
+  in_pin: GPIOXX
+  out_pin: GPIOXX
   ch_enable: true
   dhw_enable: true
 
