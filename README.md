@@ -95,43 +95,34 @@ SAT is configured using a config flow. After installation, go to the Integration
         - Device
 
 > [!Important]
-> The ESPHome yaml needs to follow the exact naming of the following configuration.
+> The ESPHome yaml needs to follow the exact naming of the following entities, otherwise SAT will not be able to find them in Home Assistant.
 <details>
 <summary>ESPHome minimal yaml configuration</summary>
    
 ```yaml
+# Insert usual esphome configuration (board, api, ota, etc.)
+
 opentherm:
-  in_pin: GPIOXX
-  out_pin: GPIOXX
+  in_pin: # insert in pin
+  out_pin: # insert out pin
   ch_enable: true
   dhw_enable: true
 
 number:
   - platform: opentherm
     t_dhw_set:
-      name: "dhw_setpoint_temperature"
-      min_value: 30.0
-      max_value: 70.0
+      name: t_dhw_set
       step: 1
-      initial_value: 55.0
       restore_value: true
     t_set:
-      name: "ch_setpoint_temperature"
-      min_value: 0.0
-      max_value: 80.0
-      step: 0.1
-      initial_value: 0.0
+      name: t_set
       restore_value: true
     max_t_set:
-      name: "max_ch_setpoint_temperature"
-      min_value: 20.0
-      max_value: 80.0
-      initial_value: 80.0
+      name: max_t_set
       step: 1
       restore_value: true
     max_rel_mod_level:
-      name: "max_modulation_level"
-      entity_category: config
+      name: max_rel_mod_level
       min_value: 0
       max_value: 100
       step: 1
@@ -141,44 +132,37 @@ number:
 sensor:
   - platform: opentherm
     rel_mod_level:
-      name: "modulation"
+      name: rel_mod_level
     device_id:
-      name: "boiler_member_id"
+      name: device_id
     t_boiler:
-      name: "boiler_temperature"
+      name: t_boiler
     t_ret:
-      name: "return_temperature"
-    t_dhw_set_lb:
-      name: "dhw_min_temperature"
-    t_dhw_set_ub:
-      name: "dhw_max_temperature"
-    t_dhw:
-      name: "Hot Water Temperature"
+      name: t_ret
     max_capacity:
-      name: "max_capacity"
+      name: max_capacity
     min_mod_level:
-      name: "min_mod_level"
+      name: min_mod_level
+    t_dhw_set_lb:
+      name: t_dhw_set_lb
+    t_dhw_set_ub:
+      name: t_dhw_set_ub
 
 binary_sensor:
   - platform: opentherm
     flame_on:
-      name: "flame_active"
-    ch_active:
-      name: "Central Heating active"
-    dhw_active:
-      name: "Hot Water active"
+      name: flame_on
 
 switch:
   - platform: opentherm
     dhw_enable:
-      name: "dhw_enabled"
-      restore_mode: RESTORE_DEFAULT_ON
-      entity_category: config
+      name: dhw_enable
     ch_enable:
-      name: "ch_enabled"
-      restore_mode: RESTORE_DEFAULT_ON
-      entity_category: config
+      name: ch_enable
 ```
+
+For more information about which other entities are available for OpenTherm please visit the [ESPHome OpenTherm documentation](https://esphome.io/components/opentherm.html)
+
 </details>
 
 2. Configure sensors:
